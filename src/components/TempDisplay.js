@@ -20,9 +20,9 @@ function TempDisplay(prop) {
             {Math.round(prop.data.list[0].main.temp) + '°'}
         </p>
         <div className="tracking-widest pt-6 space-y-4">
-            <p id="feelsLike" className="">{'Feels like ' + Math.round(prop.data.list[0].main.feels_like) + '°'}</p>
-            <p id="sunrise">{'Sunrise: ' + convertTime(prop.data.city.sunrise) + ' AM'}</p>
-            <p id="sunset">{'Sunset: ' + convertTime(prop.data.city.sunset) + ' PM'}</p>
+            <p className="">{'Feels like ' + Math.round(prop.data.list[0].main.feels_like) + '°'}</p>
+            <p>{'Sunrise: ' + convertTime(prop.data.city.sunrise) + ' AM'}</p>
+            <p>{'Sunset: ' + convertTime(prop.data.city.sunset) + ' PM'}</p>
         </div>
     </div>)
 }

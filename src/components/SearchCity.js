@@ -4,29 +4,30 @@ import TempDisplay from './TempDisplay'
 import ForecastContainer from './ForecastContainer'
 
 function SearchCity() {
-    const [city, setCity] = useState('Long Beach')
-    const [data, setData] = useState()
+    const [city, setCity] = useState('')
+    const [data, setData] = useState({})
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         setIsLoading(true)
         fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=7&appid=44d60556067ec6f2529d69194fa8e8b8&units=imperial`)
             .then(response => response.json())
-            .then(response => {
-                setCity(response.city.name)
-                setData(response)
+            .then(data => {
+                setCity('Long Beach')
+                setData(data)
                 setIsLoading(false)
         }) 
     }, [city])
 
+ 
     return (
         <div id="mainContainer" className="flex-col m-28 p-12 w-10/12 max-w-6xl h-3/4 object-center min-w-min
         bg-white bg-opacity-10 rounded-3xl divide-y-2 divide-gray-200 divide-opacity-30 text-white font-sans font-thin p-12">
             {/* <h1>{isLoading ? 'Loading ': 'Loaded'}</h1> */}
             <div className='flex h-3/5 max-h-80 justify-between m-6'>
                 <WeatherDisplay data = {data}/>
-                <TempDisplay data = {data}/>
-                <ForecastContainer />
+                {/* <TempDisplay data = {data}/>
+                <ForecastContainer data = {data}/> */}
             </div>
         </div>
     )

@@ -2,7 +2,6 @@ import React from 'react'
 import NavBar from "./components/NavBar"
 import AlertBox from './components/AlertBox'
 import SearchCity from './components/SearchCity'
-import ForecastContainer from './components/ForecastContainer'
 
 function App() {
   return (
@@ -10,7 +9,6 @@ function App() {
       <NavBar />
       <AlertBox />
       <SearchCity />
-      <ForecastContainer />
     </div>
   );
 }
