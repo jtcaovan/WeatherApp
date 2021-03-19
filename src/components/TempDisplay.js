@@ -12,11 +12,10 @@ function TempDisplay(prop) {
 
         return (hours + ':' + minutes.substr(-2));
     }
-
     
    return (
-    <div id='mainTemperature' className="divide-y-2 divide-gray-200 divide-opacity-20 text-center">
-        <p id='temperature' className="text-9xl ml-10 pb-4">
+    <div className="divide-y-2 divide-gray-200 divide-opacity-20 text-center">
+        <p className="text-9xl ml-10 pb-4">
             {Math.round(prop.data.list[0].main.temp) + '°'}
         </p>
         <div className="tracking-widest pt-6 space-y-4">
