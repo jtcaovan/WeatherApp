@@ -1,15 +1,14 @@
 import React from 'react'
 
 function Forecast (prop) {
-        console.log(prop)
-        console.log(prop.data.list)
-  
-        const forecastArray = prop.data.list.map(forecast => 
-            <div key={forecast}>
-                <div className='forecastDate'></div>
+
+        const forecastArray = prop.data.daily.map(forecast =>
+
+          <div key={forecast.dt} className="items-center flex w-full h-1/4 justify-between pt-8 lg:text-xl m:text-lg">
+                <div className='forecastDate'>{new Date(forecast.dt * 1000).toLocaleString('en-US', {weekday: 'long'})}</div>
                 <img alt="" src={`http://openweathermap.org/img/w/${forecast.weather[0].icon}.png`}/>
                 <div className="forecastInfo">{forecast.weather[0].main}</div>
-                <div className='forecastTemp'>{Math.round(forecast.main.temp)}</div>
+                <div className='forecastTemp'>{Math.round(forecast.temp.day)}</div>
             </div>)
 
         // let today = new Date()
