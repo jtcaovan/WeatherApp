@@ -1,8 +1,6 @@
 import React from 'react'
 
 function TempDisplay(prop) {
-    console.log(prop)
-
     let convertTime = (unix) => {
         let date = new Date(unix * 1000);
         var hours = date.getHours();
