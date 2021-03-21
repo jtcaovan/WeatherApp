@@ -26,19 +26,18 @@ function SearchCity() {
     }, [city])
     
     return (
-        <div id="mainContainer" className="flex-col m-28 p-12 w-10/12 max-w-6xl h-3/4 object-center min-w-min
+        <div id="mainContainer" className="m-28 p-12 w-10/12 max-w-6xl h-3/4 object-center min-w-min
         bg-white bg-opacity-10 rounded-3xl divide-y-2 divide-gray-200 divide-opacity-30 text-white font-sans font-thin p-12">
       {data !== undefined && 
             <div>
-                <div className='flex h-3/5 max-h-80 justify-between m-6'>
+                <div id="currentWeather"className='flex h-3/5 max-h-80 justify-between m-6'>
                     <WeatherDisplay data = {data} city = {city}/> 
                     <TempDisplay data = {data}/>
                 </div>
-                <div>
+                <div id="forecastContainer">
                     <Forecast data = {data}/>
                 </div>   
             </div>}
-
         </div>
     )
 }
