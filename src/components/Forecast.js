@@ -9,7 +9,7 @@ function Forecast (prop) {
                 <div className='forecastDate'>{new Date(forecast.dt * 1000).toLocaleString('en-US', {weekday: 'long'})}</div>
                 <img alt="" src={`http://openweathermap.org/img/w/${forecast.weather[0].icon}.png`}/>
                 <div className="forecastInfo">{forecast.weather[0].main}</div>
-                <div className='forecastTemp'>{Math.round(forecast.temp.day)}</div>
+                <div className='forecastTemp'>{Math.round(forecast.temp.day)}°</div>
             </div>)
 
     return(

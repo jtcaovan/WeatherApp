@@ -2,6 +2,7 @@
 import React from 'react'
 
 function WeatherDisplay(prop) {
+    console.log(prop)
     let convertDate = (unix) => {
         let date = new Date(unix * 1000);
         let month = date.toLocaleDateString("en-US", {month: "long"})
