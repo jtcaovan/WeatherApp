@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import WeatherDisplay from './WeatherDisplay'
 import TempDisplay from './TempDisplay'
-import Forecast from './Forecast'
+import Daily from './Daily'
 import Hourly from './Hourly'
 // import Details from './Details'
 
 function SearchCity() {
-    const [city, setCity] = useState('Orange')
+    const [city] = useState('Orange')
     const [data, setData] = useState(undefined)
-    const [openTab, setOpenTab] = useState(2)
+    const [openTab, setOpenTab] = useState(1)
     // const [isLoading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -29,38 +29,52 @@ function SearchCity() {
     }, [city])
 
     return (
-        <div id="mainContainer" className="m-28 p-12 w-10/12 max-w-6xl h-3/4 object-center min-w-min
-        bg-white bg-opacity-10 rounded-3xl divide-y-2 divide-gray-200 divide-opacity-30 text-white font-sans font-thin p-12">
-            {console.log(openTab)}
+        <div id="mainContainer" className="m-28 py-4 px-12 w-9/12 max-w-6xl h-4/5 2xl:h-4/6 min-w-min
+        bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin">
       {data !== undefined && 
-        <div>
-            <div>
-                <div id="currentWeather"className='flex h-3/5 max-h-80 justify-between m-6'>
-                    <WeatherDisplay data = {data} city = {city}/> 
-                    <TempDisplay data = {data}/>
+            <div className="h-full flex flex-col space-y-6 justify-around 2xl:justify-center">
+                <div className='p-1 h-2/4 min-w-max'>
+                    <div id="currentWeather" className='ml-10 mr-16 my-6 flex justify-between'>
+                        <WeatherDisplay data = {data} city = {city}/> 
+                        <TempDisplay data = {data}/>
+                    </div>
                 </div>
-            </div>
 
-            <div className="flex space-x-8 text-xl">
-                <button onClick={() => {setOpenTab(1)}}>Hourly</button>
-                <button onClick={() => {setOpenTab(2)}}>Daily</button>
-                <button onClick={() => {setOpenTab(3)}}>Details</button>
-            </div>
+                <div className='mx-2 p-1 divide-y-2 divide-gray-200 divide-opacity-20'>
+                    <ul className="flex space-x-8 text-xl">
+                        <li 
+                            className={openTab === 1 ? 'text-white focus:outline-none' : 
+                            'text-gray-300 text-opacity-60 hover:text-white focus:outline-none'}
+                            onClick={() => {setOpenTab(1)}}>
+                            Daily
+                        </li>
+                        <li 
+                            className={openTab === 2 ? 'text-white focus:outline-none' :
+                            'text-gray-300 text-opacity-60 hover:text-white focus:outline-none'}
+                            onClick={() => {setOpenTab(2)}}>
+                            Hourly
+                        </li>
+                        <li 
+                            className={openTab === 3 ? 'text-white focus:outline-none' :
+                            'text-gray-300 text-opacity-60 hover:text-white focus:outline-none'}
+                            onClick={() => {setOpenTab(3)}}>
+                            Details
+                        </li>
+                    </ul>
 
-            <div>
-                <div className={openTab === 1 ? "block" : "hidden"} id="forecastContainer">
-                    <Forecast data = {data}/>
+                    <div id="forecastContainer" className="h-2/5">
+                        <div className={openTab === 1 ? "block" : "hidden"}>
+                            <Daily data = {data}/>
+                        </div>
+                        <div className={openTab === 2 ? "block" : "hidden"}>
+                            <Hourly data = {data} />
+                        </div>
+                        {/* <div className={openTab === 3 ? "block" : "hidden"} id="detailsContainer">
+                            <Details />
+                        </div>    */}
+                    </div>
                 </div>
-                <div className={openTab === 2 ? "block" : "hidden"} id="hourlyContainer">
-                    <Hourly data = {data} />
-                </div>
-                {/* <div className={openTab === 3 ? "block" : "hidden"} id="detailsContainer">
-                    <Details />
-                </div>    */}
-            
-            </div>
-
-        </div>}
+            </div>}
         </div>
     )
 }

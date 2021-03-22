@@ -13,11 +13,11 @@ function WeatherDisplay(prop) {
     }
     
     return (
-        <div id='weatherDisplay' className="md:space-y-2 lg:space-y-4 mr-6 tracking-widest">
-            <p className="text-6xl sm:pb-2">{prop.city}</p>
-            <p className="lg:text-lg md:text-base sm:text-sm">{convertDate(prop.data.current.sunrise)}</p>
-            <img src={`http://openweathermap.org/img/w/${prop.data.current.weather[0].icon}.png`} className="lg:h-24 lg:w-24 md:h-16 md:h-16" />
-            <p className="capitalize lg:text-4xl md:text-3xl sm:text-3xl">{prop.data.current.weather[0].main}</p>
+        <div id='weatherDisplay' className="space-y-4 mr-6 tracking-widest">
+            <p className="text-6xl">{prop.city}</p>
+            <p className="">{convertDate(prop.data.current.sunrise)}</p>
+            <img src={`http://openweathermap.org/img/w/${prop.data.current.weather[0].icon}.png`} className="h-24 w-24" />
+            <p className="capitalize text-4xl">{prop.data.current.weather[0].main}</p>
         </div>
     )
 }
