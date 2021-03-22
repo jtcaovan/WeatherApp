@@ -3,10 +3,12 @@ import WeatherDisplay from './WeatherDisplay'
 import TempDisplay from './TempDisplay'
 import Forecast from './Forecast'
 import Hourly from './Hourly'
+// import Details from './Details'
 
 function SearchCity() {
     const [city, setCity] = useState('Orange')
     const [data, setData] = useState(undefined)
+    const [openTab, setOpenTab] = useState(2)
     // const [isLoading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -25,10 +27,11 @@ function SearchCity() {
         }
         fetchCity(city)
     }, [city])
-    
+
     return (
         <div id="mainContainer" className="m-28 p-12 w-10/12 max-w-6xl h-3/4 object-center min-w-min
         bg-white bg-opacity-10 rounded-3xl divide-y-2 divide-gray-200 divide-opacity-30 text-white font-sans font-thin p-12">
+            {console.log(openTab)}
       {data !== undefined && 
         <div>
             <div>
@@ -39,29 +42,25 @@ function SearchCity() {
             </div>
 
             <div className="flex space-x-8 text-xl">
-                <p>Hourly</p>
-                <p>Daily</p>
-                <p>Details</p>
+                <button onClick={() => {setOpenTab(1)}}>Hourly</button>
+                <button onClick={() => {setOpenTab(2)}}>Daily</button>
+                <button onClick={() => {setOpenTab(3)}}>Details</button>
             </div>
 
             <div>
-                <div id="forecastContainer" className="visble">
+                <div className={openTab === 1 ? "block" : "hidden"} id="forecastContainer">
                     <Forecast data = {data}/>
                 </div>
-                <div id="hourlyContainer" className="hidden">
+                <div className={openTab === 2 ? "block" : "hidden"} id="hourlyContainer">
                     <Hourly data = {data} />
                 </div>
-                {/* <div id="detailsContainer">
+                {/* <div className={openTab === 3 ? "block" : "hidden"} id="detailsContainer">
                     <Details />
                 </div>    */}
             
             </div>
 
         </div>}
-
-
-
-
         </div>
     )
 }
