@@ -30,23 +30,23 @@ function SearchCity() {
     }, [city])
 
         function handleSubmit(e) {
-            setCity()
+            e.preventDefault()
+            console.log(e.target.value)
+            setCity(e.target.value)
         }
 
     return (
-        <div>
-            <div>
-                <NavBar onSubmit={handleSubmit}/>
-            </div>
-
-            <div id="mainContainer" className="m-28 py-4 px-12 w-9/12 max-w-6xl h-4/5 2xl:h-4/5 min-w-min
+            <div id="mainContainer" className="m-28 py-4 px-12 w-9/12 max-w-6xl h-4/5 min-w-min
             bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin">
+
+                <NavBar onSubmit={handleSubmit} />
+
         {data !== undefined && 
                 <div className="h-full flex flex-col space-y-6 justify-around 2xl:justify-center">
                     <div className='p-1 h-2/4 min-w-max'>
                         <div id="currentWeather" className='ml-10 mr-16 my-6 flex justify-between'>
-                            <WeatherDisplay data = {data} city = {city}/> 
-                            <TempDisplay data = {data}/>
+                            <WeatherDisplay data = {data} city = {city} /> 
+                            <TempDisplay data = {data} />
                         </div>
                     </div>
 
@@ -86,7 +86,6 @@ function SearchCity() {
                     </div>
                 </div>}
             </div>
-        </div>
     )
 }
 
