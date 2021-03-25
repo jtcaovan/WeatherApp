@@ -20,20 +20,19 @@ function Details(prop) {
     }
 
     return(
-        <div className="items-center space-y-6 h-full w-full pt-6 lg:text-xl m:text-lg truncate">
-            <div className="capitalize text-2xl font-light">
+        <div className="items-center space-y-6 h-full w-full pt-4 lg:text-xl m:text-lg truncate">
+            <div className="text-2xl capitalize tracking-wide font-light">
                 <p>Feels like {Math.round(prop.data.current.feels_like)}°F. {prop.data.current.weather[0].description}
-
                 </p>
             </div>
-            <div className='flex justify-around'>
-                <div className="space-y-6">
-                    <p>Sunrise: {convertTime(prop.data.current.sunrise)} AM</p>
-                    <p>Sunset: {convertTime(prop.data.current.sunset)} PM</p>
-                </div>
+            <div className='flex font-extralight justify-around'>
                 <div className="space-y-6">
                     <p>High: {Math.round(prop.data.daily[0].temp.max)}°</p>
                     <p>Low: {Math.round(prop.data.daily[0].temp.min)}°</p>
+                </div>
+                <div className="space-y-6">
+                    <p>Sunrise: {convertTime(prop.data.current.sunrise)} AM</p>
+                    <p>Sunset: {convertTime(prop.data.current.sunset)} PM</p>
                 </div>
                 <div className="space-y-6">
                     <p>UV Index: {prop.data.current.uvi}</p>

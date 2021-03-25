@@ -36,21 +36,20 @@ function SearchCity() {
     }
 
     return (
-            <div id="mainContainer" className="m-28 py-4 px-12 w-9/12 max-w-6xl h-4/5 min-w-min
-            bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin select-none">
+        <div id="mainContainer" className="m-28 py-4 px-12 w-9/12 max-w-6xl h-4/5 2xl:h-3/5 min-w-min
+        bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin select-none truncate">
 
-                <NavBar onSubmit={handleSubmit}/>
+            <NavBar onSubmit={handleSubmit}/>
 
         {data !== undefined && 
-                <div className="h-full flex flex-col space-y-6 justify-around 2xl:justify-center">
-                    <div className='p-1 h-2/4 min-w-max'>
-                        <div id="currentWeather" className='ml-10 mr-16 my-6 flex justify-between'>
-                            <WeatherDisplay data = {data} city = {city} /> 
-                            <TempDisplay data = {data} />
-                        </div>
+            
+            <div className="flex flex-col space-y-6 2xl:justify-center">
+                    <div className='p-1 h-2/4 min-w-max mx-10 flex justify-between'>
+                        <WeatherDisplay data = {data} city = {city} /> 
+                        <TempDisplay data = {data} />
                     </div>
 
-                    <div className='mx-2 p-1 divide-y-2 divide-gray-200 divide-opacity-20'>
+                    <div className='mx-2 divide-y-2 divide-gray-200 divide-opacity-20'>
                         <ul className="flex space-x-8 text-xl">
                             <li 
                                 className={openTab === 1 ? 'text-white font-extralight focus:outline-none cursor-pointer'  : 
@@ -72,7 +71,7 @@ function SearchCity() {
                             </li>
                         </ul>
 
-                        <div id="forecastContainer" className="h-full">
+                        <div>
                             <div className={openTab === 1 ? "block" : "hidden"}>
                                 <Daily data = {data}/>
                             </div>
@@ -83,6 +82,7 @@ function SearchCity() {
                                 <Details data = {data}/>
                             </div>   
                         </div>
+                        
                     </div>
                 </div>}
             </div>
