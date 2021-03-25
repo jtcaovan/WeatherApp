@@ -72,7 +72,7 @@ function SearchCity() {
                             </li>
                         </ul>
 
-                        <div id="forecastContainer" className="h-2/5">
+                        <div id="forecastContainer" className="h-full">
                             <div className={openTab === 1 ? "block" : "hidden"}>
                                 <Daily data = {data}/>
                             </div>
