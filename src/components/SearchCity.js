@@ -4,7 +4,7 @@ import WeatherDisplay from './WeatherDisplay'
 import TempDisplay from './TempDisplay'
 import Daily from './Daily'
 import Hourly from './Hourly'
-// import Details from './Details'
+import Details from './Details'
 
 function SearchCity() {
     const [city, setCity] = useState('Orange')
@@ -29,17 +29,17 @@ function SearchCity() {
         fetchCity(city)
     }, [city])
 
-        function handleSubmit(e) {
-            e.preventDefault()
-            console.log(e.target.value)
-            setCity(e.target.value)
-        }
+    function handleSubmit(e) {
+        e.preventDefault()
+        console.log(e.target.value)
+        setCity(e.target.value)
+    }
 
     return (
             <div id="mainContainer" className="m-28 py-4 px-12 w-9/12 max-w-6xl h-4/5 min-w-min
             bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin">
 
-                <NavBar onSubmit={handleSubmit} />
+                <NavBar onSubmit={handleSubmit}/>
 
         {data !== undefined && 
                 <div className="h-full flex flex-col space-y-6 justify-around 2xl:justify-center">
@@ -79,9 +79,9 @@ function SearchCity() {
                             <div className={openTab === 2 ? "block" : "hidden"}>
                                 <Hourly data = {data} />
                             </div>
-                            {/* <div className={openTab === 3 ? "block" : "hidden"} id="detailsContainer">
-                                <Details />
-                            </div>    */}
+                            <div className={openTab === 3 ? "block" : "hidden"}>
+                                <Details data = {data}/>
+                            </div>   
                         </div>
                     </div>
                 </div>}

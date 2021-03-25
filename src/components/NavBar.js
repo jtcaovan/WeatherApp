@@ -2,8 +2,8 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
-function NavBar(prop) {
-    console.log(prop)
+function NavBar(prop,city) {
+    // console.log(prop)
     return (
         <div className="absolute top-0 right-0 flex p-3 m-2 items-center">
             <form className="flex bg-white w-72 h-14 rounded-md ml-4 p-4" onSubmit={prop.handleSubmit}>
