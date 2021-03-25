@@ -1,8 +1,6 @@
 import React from 'react'
 
 function TempDisplay(prop) {
-
-    
    return (
        <div>
             <div className="divide-y-2 divide-gray-200 divide-opacity-20 text-center">

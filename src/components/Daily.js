@@ -1,10 +1,11 @@
 import React from 'react'
 
 function Daily (prop) {
-    const daily = prop.data.daily
-    if (daily.length > 7) {daily.shift(0,1)}
+    console.log(prop)
 
-        const dailyArray = daily.map(daily =>
+    if (prop.data.daily.length > 7) {prop.data.daily.shift(0,1)}
+
+        const dailyArray = prop.data.daily.map(daily =>
           <div key={daily.dt} className='flex-shrink h-full w-max'>
                 <div id='dailyDate'>{new Date(daily.dt * 1000).toLocaleString('en-US', {weekday: 'long'})}</div>
                 <img alt="" src={`http://openweathermap.org/img/w/${daily.weather[0].icon}.png`}/>

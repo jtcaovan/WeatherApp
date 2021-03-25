@@ -37,7 +37,7 @@ function SearchCity() {
 
     return (
             <div id="mainContainer" className="m-28 py-4 px-12 w-9/12 max-w-6xl h-4/5 min-w-min
-            bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin">
+            bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin select-none">
 
                 <NavBar onSubmit={handleSubmit}/>
 
@@ -53,20 +53,20 @@ function SearchCity() {
                     <div className='mx-2 p-1 divide-y-2 divide-gray-200 divide-opacity-20'>
                         <ul className="flex space-x-8 text-xl">
                             <li 
-                                className={openTab === 1 ? 'text-white font-extralight focus:outline-none' : 
-                                'text-gray-300 text-opacity-60 hover:text-white transition duration-300 ease-in-out focus:outline-none'}
+                                className={openTab === 1 ? 'text-white font-extralight focus:outline-none cursor-pointer'  : 
+                                'text-gray-300 text-opacity-60 hover:text-white transition duration-300 ease-in-out focus:outline-none cursor-pointer'}
                                 onClick={() => {setOpenTab(1)}}>
                                 Daily
                             </li>
                             <li 
-                                className={openTab === 2 ? 'text-white font-extralight focus:outline-none' :
-                                'text-gray-300 text-opacity-60 hover:text-white transition duration-300 ease-in-out focus:outline-none'}
+                                className={openTab === 2 ? 'text-white font-extralight focus:outline-none cursor-pointer ' :
+                                'text-gray-300 text-opacity-60 hover:text-white transition duration-300 ease-in-out focus:outline-none cursor-pointer'}
                                 onClick={() => {setOpenTab(2)}}>
                                 Hourly
                             </li>
                             <li 
-                                className={openTab === 3 ? 'text-white font-extralight focus:outline-none' :
-                                'text-gray-300 text-opacity-60 hover:text-white transition duration-300 ease-in-out focus:outline-none'}
+                                className={openTab === 3 ? 'text-white font-extralight focus:outline-none cursor-pointer ' :
+                                'text-gray-300 text-opacity-60 hover:text-white transition duration-300 ease-in-out focus:outline-none cursor-pointer'}
                                 onClick={() => {setOpenTab(3)}}>
                                 Details
                             </li>
