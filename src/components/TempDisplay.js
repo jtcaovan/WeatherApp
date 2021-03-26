@@ -2,9 +2,9 @@ import React from 'react'
 
 function TempDisplay(prop) {
    return (
-       <div className='divide-y-2 divide-gray-200 divide-opacity-20'>
+       <div>
             <div>
-                <p className="text-9xl">
+                <p className="text-9xl ml-4 mt-12 leading-none">
                     {Math.round(prop.data.current.temp) + '°'}
                 </p>
             </div>

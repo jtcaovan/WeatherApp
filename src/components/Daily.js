@@ -1,8 +1,6 @@
 import React from 'react'
 
 function Daily (prop) {
-    console.log(prop)
-
     if (prop.data.daily.length > 7) {prop.data.daily.shift(0,1)}
 
         const dailyArray = prop.data.daily.map(daily =>
