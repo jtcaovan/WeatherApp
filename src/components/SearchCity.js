@@ -12,6 +12,7 @@ function SearchCity() {
     const [city, setCity] = useState('Orange')
     const [data, setData] = useState(undefined)
     const [openTab, setOpenTab] = useState(1)
+    const [unit, setUnit] = useState('imperial')
     const { register, handleSubmit, watch, errors } = useForm()
     const onSubmit = (data,e) => {
         setCity(data.city)
@@ -26,7 +27,7 @@ function SearchCity() {
                 const coordinates = await cityResponse.json()
                 const {lon , lat} = coordinates.coord
 
-                const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=44d60556067ec6f2529d69194fa8e8b8&units=imperial`, {mode: 'cors'})
+                const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=44d60556067ec6f2529d69194fa8e8b8&units=${unit}`, {mode: 'cors'})
                 const weather = await weatherResponse.json()
                 setData(weather)
             } catch (error) {
@@ -34,11 +35,19 @@ function SearchCity() {
             }
         }
         fetchCity(city)
-    }, [city])
+    }, [city, unit])
+
+    const handleClick = (unit) => {
+        console.log(unit)
+        unit === 'imperial' ? setUnit('metric') : setUnit('imperial')
+    }
 
     return (
         <div id="mainContainer" className="m-28 py-4 px-12 w-9/12 max-w-6xl h-4/5 2xl:h-3/5 min-w-min
         bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin select-none truncate">
+        {console.log(unit)}
+
+            <button onClick={handleClick}>F/C</button>
 
             <form 
                 className="absolute top-0 right-0 flex p-3 m-5 items-center flex bg-white w-72 h-14 rounded-md" 
