@@ -13,10 +13,10 @@ function Weather() {
     const [newCity, setNewCity] = useState('')
     const [data, setData] = useState(undefined)
     const [error, setError] = useState('hidden')
-    const [openTab, setOpenTab] = useState(1)
     const [unit, setUnit] = useState('imperial')
-    const { register, handleSubmit, reset} = useForm()
+    const [openTab, setOpenTab] = useState(1)
     const [isLoading, setLoading] = useState(false)
+    const { register, handleSubmit, reset} = useForm()
 
     useEffect(() => {
         async function fetchCity(city) {
