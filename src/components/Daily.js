@@ -8,7 +8,7 @@ function Daily (prop) {
                 <div className='font-light'>{new Date(daily.dt * 1000).toLocaleString('en-US', {weekday: 'long'})}</div>
                 <img alt="" src={ `http://openweathermap.org/img/w/${daily.weather[0].icon}.png` }/>
                 <div> {daily.weather[0].main} </div>
-                <div> {Math.round(daily.temp.day)}° </div>
+                <div> {Math.round(daily.temp.max)}° </div>
             </div>)
 
     return(

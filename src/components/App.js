@@ -1,11 +1,11 @@
 import React from 'react'
-import SearchCity from './SearchCity'
+import Weather from './Weather'
 
 function App() {
 
   return (
     <div className="h-screen flex justify-center bg-fixed bg-gradient-to-b from-blue-700 via-blue-500 to-blue-300 overflow-hidden">
-      <SearchCity />
+      <Weather />
     </div>
   );
 }

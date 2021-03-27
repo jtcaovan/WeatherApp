@@ -1,27 +1,22 @@
 import React, {useState, useEffect} from 'react'
 import { useForm } from 'react-hook-form'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch, faExclamation, faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 import WeatherDisplay from './WeatherDisplay'
 import TempDisplay from './TempDisplay'
 import Daily from './Daily'
 import Hourly from './Hourly'
 import Details from './Details'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faExclamation, faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 
-function SearchCity() {
-    const [city, setCity] = useState('Orange')
+function Weather() {
+    const [city, setCity] = useState('Long Beach')
     const [newCity, setNewCity] = useState('')
     const [data, setData] = useState(undefined)
     const [error, setError] = useState('hidden')
     const [openTab, setOpenTab] = useState(1)
     const [unit, setUnit] = useState('imperial')
-    const { register, handleSubmit} = useForm()
+    const { register, handleSubmit, reset} = useForm()
     const [isLoading, setLoading] = useState(false)
-
-    const onSubmit = (data,e) => {
-        setNewCity(data.city)
-
-    }
 
     useEffect(() => {
         async function fetchCity(city) {
@@ -30,14 +25,15 @@ function SearchCity() {
                 const cityResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=44d60556067ec6f2529d69194fa8e8b8`, {mode: 'cors'})
                 const coordinates = await cityResponse.json()
                 const {lon , lat} = coordinates.coord
-                setCity(coordinates.name)
-                
                 const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=44d60556067ec6f2529d69194fa8e8b8&units=${unit}`, {mode: 'cors'})
                 const weather = await weatherResponse.json()
+
+                setCity(coordinates.name)
                 setLoading(false)
                 setData(weather)
-            } catch (error) {
+            } catch {
                 setError('block')
+                setLoading(false)
                 setTimeout(() => {
                     setError('hidden')
                 }, 4000)
@@ -46,9 +42,12 @@ function SearchCity() {
         newCity === '' ? fetchCity(city) : fetchCity(newCity)
     }, [city, newCity, unit])
 
-    const handleClick = () => {
-        unit === 'imperial' ? setUnit('metric') : setUnit('imperial')
+    const onSubmit = (data) => {
+        setNewCity(data.city)
+        reset()
     }
+
+    const handleClick = () => {unit === 'imperial' ? setUnit('metric') : setUnit('imperial')}
 
     return (
         <div id="mainContainer" className="m-28 py-4 px-12 w-9/12 max-w-6xl h-4/5 2xl:h-3/5 min-w-min
@@ -142,4 +141,4 @@ function SearchCity() {
     )
 }
 
-export default SearchCity
+export default Weather
