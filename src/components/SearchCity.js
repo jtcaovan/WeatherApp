@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useForm } from 'react-hook-form'
+import AlertBox from './AlertBox'
 import WeatherDisplay from './WeatherDisplay'
 import TempDisplay from './TempDisplay'
 import Daily from './Daily'
@@ -31,7 +32,7 @@ function SearchCity() {
                 const weather = await weatherResponse.json()
                 setData(weather)
             } catch (error) {
-                console.log("error")
+                alert('There is an error!')
             }
         }
         fetchCity(city)
@@ -44,6 +45,9 @@ function SearchCity() {
     return (
         <div id="mainContainer" className="m-28 py-4 px-12 w-9/12 max-w-6xl h-4/5 2xl:h-3/5 min-w-min
         bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin select-none truncate">
+
+            <AlertBox />
+
             <form 
                 className="absolute top-0 right-0 flex p-3 m-5 items-center flex bg-white w-72 h-14 rounded-md" 
                 onSubmit={handleSubmit(onSubmit)}>
@@ -57,9 +61,10 @@ function SearchCity() {
                     className="text-black mx-3 h-auto w-full outline-none font-sans text-xl tracking-wide" 
                     type="search"
                     name="city"
-                    ref={register({ required: true })}
+                    ref={register}
                     placeholder="Search city..." 
                     autocomplete="off" />
+                    {errors.city && "Please enter a valid city!"}
             </form>
 
         {data !== undefined && 
