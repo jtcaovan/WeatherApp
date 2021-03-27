@@ -1,42 +1,50 @@
 import React, {useState, useEffect} from 'react'
 import { useForm } from 'react-hook-form'
-import AlertBox from './AlertBox'
 import WeatherDisplay from './WeatherDisplay'
 import TempDisplay from './TempDisplay'
 import Daily from './Daily'
 import Hourly from './Hourly'
 import Details from './Details'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faExclamation, faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 
 function SearchCity() {
     const [city, setCity] = useState('Orange')
+    const [newCity, setNewCity] = useState('')
     const [data, setData] = useState(undefined)
+    const [error, setError] = useState('hidden')
     const [openTab, setOpenTab] = useState(1)
     const [unit, setUnit] = useState('imperial')
-    const { register, handleSubmit, watch, errors } = useForm()
+    const { register, handleSubmit} = useForm()
+    const [isLoading, setLoading] = useState(false)
+
     const onSubmit = (data,e) => {
-        setCity(data.city)
-        e.target.reset()
+        setNewCity(data.city)
+
     }
-    // const [isLoading, setLoading] = useState(false)
 
     useEffect(() => {
         async function fetchCity(city) {
             try {
+                setLoading(true)
                 const cityResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=44d60556067ec6f2529d69194fa8e8b8`, {mode: 'cors'})
                 const coordinates = await cityResponse.json()
                 const {lon , lat} = coordinates.coord
-
+                setCity(coordinates.name)
+                
                 const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=44d60556067ec6f2529d69194fa8e8b8&units=${unit}`, {mode: 'cors'})
                 const weather = await weatherResponse.json()
+                setLoading(false)
                 setData(weather)
             } catch (error) {
-                alert('There is an error!')
+                setError('block')
+                setTimeout(() => {
+                    setError('hidden')
+                }, 4000)
             }
         }
-        fetchCity(city)
-    }, [city, unit])
+        newCity === '' ? fetchCity(city) : fetchCity(newCity)
+    }, [city, newCity, unit])
 
     const handleClick = () => {
         unit === 'imperial' ? setUnit('metric') : setUnit('imperial')
@@ -44,28 +52,41 @@ function SearchCity() {
 
     return (
         <div id="mainContainer" className="m-28 py-4 px-12 w-9/12 max-w-6xl h-4/5 2xl:h-3/5 min-w-min
-        bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin select-none truncate">
+        bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin shadow-2xl select-none truncate">
 
-            <AlertBox />
+            <div className='flex flex-col absolute top-0 right-0'>
+                <form 
+                    className="shadow-xl flex p-4 mx-5 mt-5 items-center flex bg-white w-72 h-14 rounded-md" 
+                    onSubmit={handleSubmit(onSubmit)}>
 
-            <form 
-                className="absolute top-0 right-0 flex p-3 m-5 items-center flex bg-white w-72 h-14 rounded-md" 
-                onSubmit={handleSubmit(onSubmit)}>
+                {isLoading ?
+                    <FontAwesomeIcon 
+                        className='text-2xl text-black animate-spin' 
+                        icon={faCircleNotch} /> :
 
-                <FontAwesomeIcon 
-                    onClick={handleSubmit(onSubmit)} 
-                    className='text-2xl text-black hover:text-gray-500 cursor-pointer"' 
-                    icon={faSearch} />
+                    <FontAwesomeIcon 
+                        className='text-2xl text-black hover:text-gray-500 cursor-pointer' 
+                        onClick={handleSubmit(onSubmit)} 
+                        icon={faSearch} />
+                    }
 
-                <input 
-                    className="text-black mx-3 h-auto w-full outline-none font-sans text-xl tracking-wide" 
-                    type="search"
-                    name="city"
-                    ref={register}
-                    placeholder="Search city..." 
-                    autocomplete="off" />
-                    {errors.city && "Please enter a valid city!"}
-            </form>
+                    <input 
+                        className="text-black mx-3 h-auto w-full outline-none font-sans text-xl tracking-wide" 
+                        type="search"
+                        name="city"
+                        ref={register({ required: true })}
+                        placeholder="Search city..." 
+                        autocomplete="off" />
+                </form>
+
+                <div className={error}>
+                    <div className="bg-red-500 mx-5 p-4 h-14 w-72 rounded-md text-white"> 
+                        <FontAwesomeIcon className='animate-bounce' icon={faExclamation}/> <span className="pl-4 font-light text-l">Please enter a valid city name...</span>
+                    </div>
+                </div>
+
+
+            </div>
 
         {data !== undefined && 
             
