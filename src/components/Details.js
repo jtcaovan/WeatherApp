@@ -22,7 +22,7 @@ function Details(prop) {
     return(
         <div className="items-center space-y-6 h-full w-full pt-4 lg:text-xl m:text-lg truncate">
             <div className="text-2xl capitalize tracking-wide font-light">
-                <p>Feels like {Math.round(prop.data.current.feels_like)}°F. {prop.data.current.weather[0].description}
+                <p>Feels like {Math.round(prop.data.current.feels_like)}°. {prop.data.current.weather[0].description}
                 </p>
             </div>
             <div className='flex font-extralight justify-around'>

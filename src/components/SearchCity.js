@@ -37,18 +37,13 @@ function SearchCity() {
         fetchCity(city)
     }, [city, unit])
 
-    const handleClick = (unit) => {
-        console.log(unit)
+    const handleClick = () => {
         unit === 'imperial' ? setUnit('metric') : setUnit('imperial')
     }
 
     return (
         <div id="mainContainer" className="m-28 py-4 px-12 w-9/12 max-w-6xl h-4/5 2xl:h-3/5 min-w-min
         bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin select-none truncate">
-        {console.log(unit)}
-
-            <button onClick={handleClick}>F/C</button>
-
             <form 
                 className="absolute top-0 right-0 flex p-3 m-5 items-center flex bg-white w-72 h-14 rounded-md" 
                 onSubmit={handleSubmit(onSubmit)}>
@@ -94,6 +89,13 @@ function SearchCity() {
                             'text-gray-300 text-opacity-60 hover:text-white transition duration-300 ease-in-out focus:outline-none cursor-pointer'}
                             onClick={() => {setOpenTab(3)}}>
                             Details
+                        </li>
+                        <li className='ml-auto'>
+                            <button 
+                                className='font-thin text-gray-300 text-opacity-60 hover:text-white transition duration-300 ease-in-out focus:outline-none' 
+                                onClick={handleClick}>
+                                {unit==='imperial'? 'C°': 'F°'}
+                            </button>
                         </li>
                     </ul>
 
