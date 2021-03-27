@@ -1,6 +1,10 @@
 # Weather App
 
-A simple weather widget-style application that displays the current weather and hourly/daily forecast of a city. Recreated a previous weather application project using React.
+A simple weather widget-style application that displays the current weather and hourly/daily forecast.
+
+Recreated a previous weather application project using React.
+
+https://jtcaovan.github.io/WeatherApp/
 
 ![Screen Shot 2021-03-27 at 3 43 45 PM 1](https://user-images.githubusercontent.com/61437879/112736890-66fded00-8f13-11eb-8c5c-f7dc568c3f48.png)
 
