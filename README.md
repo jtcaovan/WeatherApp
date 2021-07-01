@@ -6,8 +6,9 @@
 A simple weather widget-style application that displays the current weather and hourly/daily forecast. 
 
 ## Learning Outcomes
-This was a previous project rebuilt using React for additional practice.  
+This was a previous project rebuilt using React for additional practice.
 
+* Topics practiced include: 
     * Asynchonous Javascript (Promises/async/await)
     * Built with React
         * React form handling (using react-form-hooks library)
@@ -29,8 +30,9 @@ This was a previous project rebuilt using React for additional practice.
 
 ## Challenges
 * Project structure organization - splitting code into reusable React components
-* Styling UI for responsive design
-* Accessing specific weather data from API calls
+* Styling UI for responsive and clean design
+* Accessing specific weather data from API calls - some OpenWeather calls didn't have all the weather information needed for this application
+* Date and Time Unix conversions
 
 
 ## Screenshots
