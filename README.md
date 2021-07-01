@@ -8,7 +8,7 @@ A simple weather widget-style application that displays the current weather and 
 ## Learning Outcomes
 This was a previous project rebuilt using React for additional practice.
 
-* Topics practiced include: 
+* Learning outcomes include: 
     * Asynchonous Javascript (Promises/async/await)
     * Built with React
         * React form handling (using react-form-hooks library)
