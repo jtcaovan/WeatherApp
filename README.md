@@ -27,6 +27,7 @@ This was a previous project rebuilt using React for additional practice.
 * Weather information from any city in the world
 * Simple loading animation when fetching new location
 * Convert between C°/F°
+* Responsive web design
 
 ## Challenges
 * Project structure organization - splitting code into reusable React components
