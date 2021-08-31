@@ -9,7 +9,7 @@ import Hourly from './Hourly'
 import Details from './Details'
 
 function Weather() {
-    const [city, setCity] = useState('Long Beach')
+    const [city, setCity] = useState('Phoenix')
     const [newCity, setNewCity] = useState('')
     const [data, setData] = useState(undefined)
     const [error, setError] = useState('hidden')
@@ -50,27 +50,25 @@ function Weather() {
     const handleClick = () => {unit === 'imperial' ? setUnit('metric') : setUnit('imperial')}
 
     return (
-        <div id="mainContainer" className="m-28 py-4 px-12 w-9/12 max-w-6xl h-4/5 2xl:h-3/5 min-w-min
+        <div id="mainContainer" className="md:m-28 py-4 px-12 w-9/12 max-w-6xl h-screen md:h-3/5 xl:h-4/5 2xl:h-3/5 min-w-min
         bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin shadow-2xl select-none truncate">
-
             <div className='flex flex-col absolute top-0 right-0'>
-                <form 
-                    className="shadow-xl flex p-4 mx-5 mt-5 items-center flex bg-white w-72 h-14 rounded-md" 
+                <form className="shadow-xl flex p-4 mx-5 mt-5 items-center flex bg-white w-48 md:w-72 h-12 md:h-14 rounded-md" 
                     onSubmit={handleSubmit(onSubmit)}>
 
                 {isLoading ?
                     <FontAwesomeIcon 
-                        className='text-2xl text-black animate-spin' 
+                        className='text-lg md:text-2xl text-black animate-spin' 
                         icon={faCircleNotch} /> :
 
                     <FontAwesomeIcon 
-                        className='text-2xl text-black hover:text-gray-500 cursor-pointer' 
+                        className='text-lg md:text-2xl text-black hover:text-gray-500 cursor-pointer' 
                         onClick={handleSubmit(onSubmit)} 
                         icon={faSearch} />
                     }
 
                     <input 
-                        className="text-black mx-3 h-auto w-full outline-none font-sans text-xl tracking-wide" 
+                        className="text-black mx-3 h-auto w-full outline-none font-sans text-base md:text-xl tracking-wide" 
                         type="search"
                         name="city"
                         ref={register({ required: true })}
@@ -79,8 +77,8 @@ function Weather() {
                 </form>
 
                 <div className={error}>
-                    <div className="bg-red-500 mx-5 p-4 h-14 w-72 rounded-md text-white"> 
-                        <FontAwesomeIcon className='animate-bounce' icon={faExclamation}/> <span className="pl-4 font-light text-l">Please enter a valid city name...</span>
+                    <div className="bg-red-500 mx-5 p-4 h-12 w-56 md:h-14 md:w-72 rounded-md text-white"> 
+                        <FontAwesomeIcon className='animate-bounce' icon={faExclamation}/> <span className="pl-4 font-light text-sm">Please enter a valid city name...</span>
                     </div>
                 </div>
 
@@ -90,13 +88,13 @@ function Weather() {
         {data !== undefined && 
             
             <div className="flex flex-col space-y-6 2xl:justify-center">
-                <div className='p-1 h-2/4 min-w-max md:space-x-18 xl:mx-10 flex justify-between'>
+                <div className='mt-16 md:mt-0 p-1 h-2/4 min-w-max md:space-x-18 xl:mx-10 flex flex-col md:flex-row md:justify-between xl:m-auto'>
                     <WeatherDisplay data = {data} city = {city} /> 
                     <TempDisplay data = {data} />
                 </div>
 
-                <div className='mx-2 divide-y-2 divide-gray-200 divide-opacity-20'>
-                    <ul className="flex space-x-8 text-xl">
+                <div className='w-screen md:w-full md:mx-2 divide-y-2 divide-gray-200 divide-opacity-20'>
+                    <ul className="flex space-x-8 text-xl justify-center md:justify-start">
                         <li 
                             className={openTab === 1 ? 'text-white font-extralight focus:outline-none cursor-pointer'  : 
                             'text-gray-300 text-opacity-60 hover:text-white transition duration-300 ease-in-out focus:outline-none cursor-pointer'}

@@ -20,25 +20,25 @@ function Details(prop) {
     }
 
     return(
-        <div className="items-center space-y-6 h-full w-full pt-4 lg:text-xl m:text-lg truncate">
-            <div className="text-2xl capitalize tracking-wide font-light">
+        <div className="items-center md:items-center space-y-6 h-max md:h-full w-full pt-4 lg:text-xl m:text-lg truncate">
+            <div className="text-xl text-center md:text-left md:text-2xl capitalize tracking-wide font-light">
                 <p>Feels like {Math.round(prop.data.current.feels_like)}°. {prop.data.current.weather[0].description}
                 </p>
             </div>
-            <div className='flex font-extralight justify-around'>
-                <div className="space-y-6">
+            <div className='flex flex-col md:flex-row space-y-6 md:space-y-0 place-content-center md:justify-between font-extralight'>
+                <div className="flex md:flex-col justify-around md:space-y-6">
                     <p>High: {Math.round(prop.data.daily[0].temp.max)}°</p>
                     <p>Low: {Math.round(prop.data.daily[0].temp.min)}°</p>
                 </div>
-                <div className="space-y-6">
+                <div className="flex md:flex-col justify-around md:space-y-6">
                     <p>Sunrise: {convertTime(prop.data.current.sunrise)} AM</p>
                     <p>Sunset: {convertTime(prop.data.current.sunset)} PM</p>
                 </div>
-                <div className="space-y-6">
+                <div className="flex md:flex-col justify-around md:space-y-6">
                     <p>UV Index: {prop.data.current.uvi}</p>
                     <p>Humidity: {prop.data.current.humidity}%</p>
                 </div>
-                <div className="space-y-6">
+                <div className="flex md:flex-col justify-around md:space-y-6">
                     <p>Wind: {prop.data.current.wind_speed} mph {convertToDirection(prop.data.current.wind_deg)}</p>
                     <p>Visibility: {(prop.data.current.visibility/1000)} km</p>
                 </div>
