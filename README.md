@@ -1,4 +1,4 @@
-# Weather App
+# Breezy - A Weather App
 
 ## Live Demo: https://jtcaovan.github.io/WeatherApp/
 
