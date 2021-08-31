@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useForm } from 'react-hook-form'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faExclamation, faCircleNotch } from '@fortawesome/free-solid-svg-icons'
+import Search from './Search'
 import WeatherDisplay from './WeatherDisplay'
 import TempDisplay from './TempDisplay'
 import Daily from './Daily'
@@ -16,7 +14,6 @@ function Weather() {
     const [unit, setUnit] = useState('imperial')
     const [openTab, setOpenTab] = useState(1)
     const [isLoading, setLoading] = useState(false)
-    const { register, handleSubmit, reset} = useForm()
 
     useEffect(() => {
         async function fetchCity(city) {
@@ -42,51 +39,19 @@ function Weather() {
         newCity === '' ? fetchCity(city) : fetchCity(newCity)
     }, [city, newCity, unit])
 
-    const onSubmit = (data) => {
-        setNewCity(data.city)
-        reset()
-    }
-
     const handleClick = () => {unit === 'imperial' ? setUnit('metric') : setUnit('imperial')}
 
     return (
-        <div id="mainContainer" className="md:m-28 py-4 px-12 w-9/12 max-w-6xl h-screen md:h-3/5 xl:h-4/5 2xl:h-3/5 min-w-min
+        <div className="md:m-28 py-4 px-12 w-9/12 max-w-6xl h-full md:h-4/5 xl:h-4/5 2xl:h-3/5 min-w-min
         bg-white bg-opacity-10 rounded-3xl text-white font-sans font-thin shadow-2xl select-none truncate">
-            <div className='flex flex-col absolute top-0 right-0'>
-                <form className="shadow-xl flex p-4 mx-5 mt-5 items-center flex bg-white w-48 md:w-72 h-12 md:h-14 rounded-md" 
-                    onSubmit={handleSubmit(onSubmit)}>
 
-                {isLoading ?
-                    <FontAwesomeIcon 
-                        className='text-lg md:text-2xl text-black animate-spin' 
-                        icon={faCircleNotch} /> :
+            <Search 
+                isLoading={isLoading} 
+                error={error}
+                setNewCity={setNewCity}
+            />
 
-                    <FontAwesomeIcon 
-                        className='text-lg md:text-2xl text-black hover:text-gray-500 cursor-pointer' 
-                        onClick={handleSubmit(onSubmit)} 
-                        icon={faSearch} />
-                    }
-
-                    <input 
-                        className="text-black mx-3 h-auto w-full outline-none font-sans text-base md:text-xl tracking-wide" 
-                        type="search"
-                        name="city"
-                        ref={register({ required: true })}
-                        placeholder="Search city..." 
-                        autocomplete="off" />
-                </form>
-
-                <div className={error}>
-                    <div className="bg-red-500 mx-5 p-4 h-12 w-56 md:h-14 md:w-72 rounded-md text-white"> 
-                        <FontAwesomeIcon className='animate-bounce' icon={faExclamation}/> <span className="pl-4 font-light text-sm">Please enter a valid city name...</span>
-                    </div>
-                </div>
-
-
-            </div>
-
-        {data !== undefined && 
-            
+            {data !== undefined && 
             <div className="flex flex-col space-y-6 2xl:justify-center">
                 <div className='mt-16 md:mt-0 p-1 h-2/4 min-w-max md:space-x-18 xl:mx-10 flex flex-col md:flex-row md:justify-between xl:m-auto'>
                     <WeatherDisplay data = {data} city = {city} /> 
@@ -122,7 +87,7 @@ function Weather() {
                         </li>
                     </ul>
 
-                    <div>
+                    <div className='h-full'>
                         <div className={openTab === 1 ? "block" : "hidden"}>
                             <Daily data = {data}/>
                         </div>

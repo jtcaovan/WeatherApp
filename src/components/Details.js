@@ -20,12 +20,12 @@ function Details(prop) {
     }
 
     return(
-        <div className="items-center md:items-center space-y-6 h-max md:h-full w-full pt-4 lg:text-xl m:text-lg truncate">
+        <div className="items-center space-y-6 :h-full w-full pt-4 truncate">
             <div className="text-xl text-center md:text-left md:text-2xl capitalize tracking-wide font-light">
                 <p>Feels like {Math.round(prop.data.current.feels_like)}°. {prop.data.current.weather[0].description}
                 </p>
             </div>
-            <div className='flex flex-col md:flex-row space-y-6 md:space-y-0 place-content-center md:justify-between font-extralight'>
+            <div className='flex flex-col text-lg lg:text-xl md:flex-row space-y-8 md:space-y-0 place-content-center md:justify-between font-extralight'>
                 <div className="flex md:flex-col justify-around md:space-y-6">
                     <p>High: {Math.round(prop.data.daily[0].temp.max)}°</p>
                     <p>Low: {Math.round(prop.data.daily[0].temp.min)}°</p>
