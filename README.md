@@ -37,5 +37,6 @@ This was a previous project rebuilt using React for additional practice.
 
 
 ## Screenshots
+![weather](https://user-images.githubusercontent.com/61437879/132082403-0817deb6-4ccb-4c74-83af-ccb5a819d5ea.png)
 
 ![Screen Shot 2021-03-27 at 3 43 45 PM 1](https://user-images.githubusercontent.com/61437879/112736890-66fded00-8f13-11eb-8c5c-f7dc568c3f48.png)
